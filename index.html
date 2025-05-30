@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bewerbung – Justin Johann</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      max-width: 600px;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 720px;
+      height: 405px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      background-color: #007acc;
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Willkommen zu meiner Bewerbung</h1>
+  <p>Ich bin Justin Johann und freue mich, mich Ihnen hier kurz in einem Video vorstellen zu dürfen.</p>
+
+  <!-- YouTube-Video einbetten – Link anpassen -->
+  <iframe 
+    src="https://www.youtube.com/embed/DEIN_VIDEO_ID" 
+    title="Bewerbungsvideo" 
+    allowfullscreen>
+  </iframe>
+
+  <!-- Lebenslauf-Download (PDF-Datei ins gleiche Verzeichnis legen) -->
+  <a class="btn" href="Lebenslauf_Justin_Johann.pdf" download>Lebenslauf herunterladen</a>
+</body>
+</html>
