@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+    <script src="https://www.youtube.com/iframe_api"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bewerbung – Justin Johann</title>
@@ -51,19 +52,36 @@
       background-color: #005fa3;
     }
   </style>
+  <script>
+  var player;
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '360',
+      width: '640',
+      videoId: 'mm9Q0ery82o',
+      events: {
+        'onReady': onPlayerReady
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    event.target.setVolume(5); 
+  }
+</script>
+
 </head>
 <body>
-  <h1>Willkommen zu meiner Bewerbung</h1>
+  <h1>Das bin ich.</h1>
   <p>Ich bin Justin Johann und freue mich, mich Ihnen hier kurz in einem Video vorstellen zu dürfen.</p>
 
   <!-- YouTube-Video einbetten – Link anpassen -->
-  <iframe 
-    src="https://www.youtube.com/embed/DEIN_VIDEO_ID" 
-    title="Bewerbungsvideo" 
-    allowfullscreen>
-  </iframe>
+  <div id="player" ></div>
+
 
   <!-- Lebenslauf-Download (PDF-Datei ins gleiche Verzeichnis legen) -->
   <a class="btn" href="Lebenslauf_Justin_Johann.pdf" download>Lebenslauf herunterladen</a>
 </body>
 </html>
+
