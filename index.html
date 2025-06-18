@@ -1,87 +1,79 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-    <script src="https://www.youtube.com/iframe_api"></script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bewerbung – Justin Johann</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bewerbung – Justin Johann</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4rem 2rem;
+        }
 
-    h1 {
-      margin-bottom: 0.5rem;
-    }
+        h1 {
+            margin-bottom: 0.5rem;
+        }
 
-    p {
-      max-width: 600px;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
+        p {
+            max-width: 700px;
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
 
-    iframe {
-      width: 100%;
-      max-width: 720px;
-      height: 405px;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      margin-bottom: 2rem;
-    }
+        .btn-container {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-    .btn {
-      background-color: #007acc;
-      color: white;
-      text-decoration: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
+        .btn {
+            background-color: #007acc;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
 
-    .btn:hover {
-      background-color: #005fa3;
-    }
-  </style>
-  <script>
-  var player;
-
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-      height: '360',
-      width: '640',
-      videoId: 'mm9Q0ery82o',
-      events: {
-        'onReady': onPlayerReady
-      }
-    });
-  }
-
-  function onPlayerReady(event) {
-    event.target.setVolume(5); 
-  }
-</script>
-
+        .btn:hover {
+            background-color: #005fa3;
+        }
+    </style>
 </head>
+
 <body>
-  <h1>Das bin ich.</h1>
-  <p>Ich bin Justin Johann und freue mich, mich Ihnen hier kurz in einem Video vorstellen zu dürfen.</p>
+    <div
+        style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 700px; text-align: center; margin-bottom: 2rem;">
+        <h1>Willkommen!</h1>
+        <p>Ich bin Justin Johann. Auf dieser Seite finden Sie meinen Lebenslauf sowie ein Projektportfolio.</p>
+        <p>Ich freue mich, Ihnen hier einen kleinen Einblick in meine bisherige Laufbahn zu geben.</p>
+    </div>
 
-  <!-- YouTube-Video einbetten – Link anpassen -->
-  <div id="player" ></div>
 
+    <div class="btn-container">
+        <a class="btn" href="lebenslauf.html">Zum Lebenslauf</a>
+        <a class="btn" href="portfolio.html">Zum Projektportfolio</a>
+    </div>
+    <div style="margin-top: 3rem; text-align: center; line-height: 1.6;">
+        <h2>Kontakt</h2>
+        <p>Justin Johann <br>
+            <a href="mailto:Justin.Johann24@gmail.com"
+                style="color: #007acc; text-decoration: none; font-weight: bold;">Justin.Johann24@gmail.com</a><br>
+            <a href="https://www.linkedin.com/in/justin-johann-598b5924a/" target="_blank"
+                style="color: #007acc; text-decoration: none; font-weight: bold;">LinkedIn</a>
+        </p>
+    </div>
 
-  <!-- Lebenslauf-Download (PDF-Datei ins gleiche Verzeichnis legen) -->
-    <a class="btn" href="lebenslauf.html">Zum Lebenslauf</a>
 </body>
-</html>
 
+</html>
