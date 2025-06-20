@@ -28,11 +28,23 @@
             margin-bottom: 2.5rem;
         }
 
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
         .btn-container {
             display: flex;
             gap: 1.5rem;
             flex-wrap: wrap;
             justify-content: center;
+            margin-top: 0rem;
         }
 
         .btn {
@@ -48,32 +60,45 @@
         .btn:hover {
             background-color: #005fa3;
         }
+
+        .kontakt h2 {
+            margin-top: 0;
+        }
+
+        .kontakt a {
+            color: #007acc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .kontakt p {
+            margin-bottom: 0;
+        }
     </style>
 </head>
 
 <body>
-    <div
-        style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 700px; text-align: center; margin-bottom: 2rem;">
+    <div class="card">
         <h1>Willkommen!</h1>
         <p>Ich bin Justin Johann. Auf dieser Seite finden Sie meinen Lebenslauf sowie ein Projektportfolio.</p>
         <p>Ich freue mich, Ihnen hier einen kleinen Einblick in meine bisherige Laufbahn zu geben.</p>
     </div>
 
-
-    <div class="btn-container">
-        <a class="btn" href="lebenslauf.html">Zum Lebenslauf</a>
-        <a class="btn" href="portfolio.html">Zum Projektportfolio</a>
+    <div class="card">
+        <div class="btn-container">
+            <a class="btn" href="lebenslauf.html">Zum Lebenslauf</a>
+            <a class="btn" href="portfolio.html">Zum Projektportfolio</a>
+        </div>
     </div>
-    <div style="margin-top: 3rem; text-align: center; line-height: 1.6;">
+
+    <div class="card kontakt">
         <h2>Kontakt</h2>
-        <p>Justin Johann <br>
-            <a href="mailto:Justin.Johann24@gmail.com"
-                style="color: #007acc; text-decoration: none; font-weight: bold;">Justin.Johann24@gmail.com</a><br>
-            <a href="https://www.linkedin.com/in/justin-johann-598b5924a/" target="_blank"
-                style="color: #007acc; text-decoration: none; font-weight: bold;">LinkedIn</a>
+        <p>
+            Justin Johann<br>
+            <a href="mailto:Justin.Johann24@gmail.com">Justin.Johann24@gmail.com</a><br>
+            <a href="https://www.linkedin.com/in/justin-johann-598b5924a/" target="_blank">LinkedIn</a>
         </p>
     </div>
-
 </body>
 
 </html>
