@@ -12,8 +12,8 @@ body {
 .container {
     position: relative;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-        margin-top: 20px;
-        margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 
 }
 
@@ -87,7 +87,7 @@ body {
 }
 
 .sidebarsection .ptext a {
-    color: #d9e3f5; 
+    color: #d9e3f5;
     text-decoration: underline;
 }
 
@@ -234,4 +234,28 @@ body {
 .circle.filled {
     background-color: #e0e7f1;
     border-color: #e0e7f1;
+}
+
+.zurueck-button {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 122, 204, 0.8);
+    /* leicht transparentes Blau */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, opacity 0.3s;
+    z-index: 1000;
+    opacity: 0.9;
+}
+
+.zurueck-button:hover {
+    background-color: rgba(0, 95, 163, 0.95);
+    /* etwas kräftiger bei Hover */
+    opacity: 1;
 }
