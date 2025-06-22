@@ -2,128 +2,842 @@
 <html lang="de">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bewerbung – Justin Johann</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justin Johann</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        body {
+        :root {
+            --bg: #f3f4f6;
+            --text: #0a0a0a;
+            --muted: #374151;
+            --primary: #4f46e5;
+            --card: #ffffff;
+            --ring: #7c3aed;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.25rem 0.75rem;
+            background: var(--card);
+            border-radius: 9999px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            width: max-content;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .show-name .nav-bar {
+            padding: 0.5rem 1.25rem;
+            gap: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .nav-name {
+            font-weight: 600;
+            color: var(--primary);
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            white-space: nowrap;
+            width: 0;
+        }
+
+        .show-name .nav-name {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-center a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-center a:hover {
+            color: var(--primary);
+        }
+
+        .nav-toggle {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--text);
+            padding: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease;
+        }
+
+        .nav-toggle:hover {
+            color: var(--primary);
+        }
+
+        .theme-icon {
+            width: 22px;
+            height: 22px;
+        }
+
+        body.dark {
+            --bg: #0e0e10;
+            --text: #f4f4f5;
+            --muted: #a1a1aa;
+            --card: #18181b;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            font-family: sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 4rem 2rem;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
 
-        h1 {
-            margin-bottom: 0.5rem;
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        p {
-            max-width: 700px;
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.55) 0%, transparent 40%),
+                radial-gradient(circle at 80% 60%, rgba(236, 72, 153, 0.55) 0%, transparent 40%),
+                radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.55) 0%, transparent 40%);
+            background-repeat: no-repeat;
+            background-size: 300% 300%;
+            animation: animateSpots 20s ease-in-out infinite;
+            transition: opacity 0.5s ease;
+            opacity: 0.5;
+            filter: brightness(0.85);
+        }
+
+        body.dark::before {
+            opacity: 0.4;
+            filter: brightness(0.75);
+        }
+
+        body:not(.dark)::before {
+            opacity: 0.5;
+            filter: brightness(0.85);
+        }
+
+        @keyframes animateSpots {
+            0% {
+                background-position: 30% 40%, 70% 60%, 50% 70%;
+            }
+
+            25% {
+                background-position: 40% 30%, 60% 70%, 55% 65%;
+            }
+
+            50% {
+                background-position: 35% 35%, 65% 65%, 45% 75%;
+            }
+
+            75% {
+                background-position: 25% 45%, 75% 55%, 60% 60%;
+            }
+
+            100% {
+                background-position: 30% 40%, 70% 60%, 50% 70%;
+            }
+        }
+
+        .toggle-mode {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--card);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: 1px solid var(--muted);
+        }
+
+        header {
+            padding: 10vh 2rem 6vh;
             text-align: center;
-            margin-bottom: 2.5rem;
-            padding-left: 90px;
-            padding-right: 90px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--ring), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--muted);
+        }
+
+        .section {
+            margin-top: 2.5rem;
+            margin-bottom: 1.25rem;
+            padding: 1rem 2rem;
+            transition: padding 0.3s ease;
+        }
+
+        .section-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .section-title.clickable {
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+            padding-right: 1.5rem;
+            user-select: none;
+            display: inline-block;
+        }
+
+        .section-title.clickable::after {
+            content: "▼";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.9rem;
+            color: var(--muted);
+            transition: transform 0.3s ease;
+        }
+
+        .section-title.clickable.collapsed::after {
+            transform: translateY(-50%) rotate(-90deg);
         }
 
         .card {
-            background: white;
+            border: 1px solid transparent;
+            background-color: var(--card);
+            border-radius: 16px;
             padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            max-width: 700px;
-            width: 100%;
-            text-align: center;
             margin-bottom: 2rem;
+            box-shadow: 0 6px 25px var(--shadow);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
-        .btn-container {
+        .card:hover {
+            box-shadow: 0 16px 40px rgba(79, 70, 229, 0.15);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .entry-title {
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .entry-meta {
+            font-size: 1.2rem;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .entry-tech {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .entry-body {
+            font-size: 1.2rem;
+            color: var(--muted);
+        }
+
+        .skill-list {
             display: flex;
-            gap: 1.5rem;
             flex-wrap: wrap;
+            gap: 0.75rem;
             justify-content: center;
-            margin-top: 0rem;
         }
 
-        .btn {
-            background-color: #007acc;
+        .skill {
+            position: relative;
+            background-color: #312e81;
             color: white;
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: background-color 0.3s;
+            padding: 0.6rem 1.2rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
-        .btn:hover {
-            background-color: #005fa3;
+        .skill::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(120deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.25) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-20deg);
+            pointer-events: none;
         }
 
-        .kontakt h2 {
-            margin-top: 0;
+        .skill:hover {
+            transform: scale(1.08);
+            background-color: #4338ca;
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
         }
 
-        .kontakt a {
-            color: #007acc;
-            text-decoration: none;
-            font-weight: bold;
+        .skill:hover::before {
+            animation: shine 0.8s ease-out;
         }
 
-        .kontakt p {
-            margin-bottom: 0;
-        }
-
-        img {
-            width: 30%;
-            max-width: 150px;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        @media (max-width: 600px) {
-            .card {
-                padding: 20px;
+        @keyframes shine {
+            from {
+                left: -75%;
             }
 
-            p {
-                padding: 0px;
+            to {
+                left: 125%;
+            }
+        }
+
+        .contact-info a {
+            color: var(--ring);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.85rem;
+            padding: 4rem 2rem 2rem;
+            color: var(--muted);
+        }
+
+        .card-profil {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .profilbild-wrapper {
+            display: inline-block;
+            background-color: var(--card);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 25px var(--shadow);
+            max-width: 40%;
+            margin: 2rem auto 0;
+        }
+
+        .profilbild {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            background-color: transparent;
+        }
+
+        ul {
+            padding-left: 1rem;
+            margin-left: 2px;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--ring), var(--primary));
+            color: white;
+            border: none;
+            border-radius: 9999px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-to-top:hover {
+            transform: scale(1.1);
+        }
+
+        body.scrolled .back-to-top {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        @media (max-width: 650px) {
+            ul {
+                padding-left: 1rem;
+                margin-left: 0;
+            }
+
+            .profilbild-wrapper {
+                max-width: 80%;
+            }
+
+            .section {
+                padding-left: 0.2rem;
+                padding-right: 0.2rem;
+            }
+
+            footer {
+                padding-top: 20px;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .entry-title,
+            .entry-meta,
+            .entry-tech,
+            .entry-body {
+                font-size: 1rem;
+            }
+
+            .nav-center {
+                gap: 0.4rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .nav-center a {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+
+        .mobile-only {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none !important;
+            }
+
+            .mobile-only {
+                display: flex;
+            }
+        }
+
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            align-items: flex-end;
+            background: var(--card);
+            position: fixed;
+            top: 4.5rem;
+            right: 1rem;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 6px 30px var(--shadow);
+            z-index: 999;
+            gap: 1rem;
+            width: auto;
+            max-width: 250px;
+        }
+
+
+        .mobile-nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: right;
+            width: 100%;
+        }
+
+        .mobile-nav.show {
+            display: flex;
+        }
+
+        .mobile-nav-toggle {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            padding: 0.25rem;
+            cursor: pointer;
+            color: var(--text);
+            font-size: 1.25rem;
+        }
+
+        .mobile-nav-toggle:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .nav-bar {
+                left: auto;
+                right: 1rem;
+                transform: none;
             }
         }
     </style>
+
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle('dark');
+            const isDark = document.body.classList.contains('dark');
+
+            document.querySelectorAll('.theme-icon').forEach(icon => {
+                const current = icon.getAttribute('data-lucide');
+                if (current === 'sun' || current === 'moon') {
+                    icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+                }
+            });
+
+            lucide.createIcons();
+        }
+
+        function toggleSection(id) {
+            const section = document.getElementById(id);
+            const title = section.querySelector('.section-title');
+            const cards = section.querySelectorAll('.card');
+            const collapsed = title.classList.toggle('collapsed');
+            section.style.paddingBottom = collapsed ? '0.5rem' : '2rem';
+            cards.forEach(card => {
+                card.style.display = collapsed ? 'none' : 'block';
+            });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                document.body.classList.add('scrolled');
+            } else {
+                document.body.classList.remove('scrolled');
+            }
+        });
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const isDark = document.body.classList.contains('dark');
+
+            document.querySelectorAll('.theme-icon').forEach(icon => {
+                const current = icon.getAttribute('data-lucide');
+                if (current === 'sun' || current === 'moon') {
+                    icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+                }
+            });
+
+            lucide.createIcons();
+        });
+        window.addEventListener('scroll', () => {
+            const body = document.body;
+            const navName = document.querySelector('.nav-name');
+
+            if (window.scrollY > 100) {
+                body.classList.add('show-name');
+                if (navName) navName.style.width = 'auto';
+            } else {
+                body.classList.remove('show-name');
+                if (navName) navName.style.width = '0';
+            }
+
+        });
+        function toggleMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            const menuIcon = document.querySelector('.menu-icon');
+            const closeIcon = document.querySelector('.close-icon');
+            const isOpen = mobileNav.classList.toggle('show');
+
+            menuIcon.style.display = isOpen ? 'none' : 'inline';
+            closeIcon.style.display = isOpen ? 'inline' : 'none';
+
+            lucide.createIcons();
+        }
+
+        function closeMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            const menuIcon = document.querySelector('.menu-icon');
+            const closeIcon = document.querySelector('.close-icon');
+
+            mobileNav.classList.remove('show');
+            menuIcon.style.display = 'inline';
+            closeIcon.style.display = 'none';
+        }
+    </script>
 </head>
 
-<body>
-    <div class="card">
-        <h1>Herzlich willkommen!</h1>
-        <br>
-        <img src="img.jpg">
-        <p>Mein Name ist Justin Johann. Auf dieser Seite finden Sie meinen Lebenslauf sowie eine Übersicht meiner
-            Projekte aus Studium und Praxisphasen.</p>
-        <p>Ich freue mich Ihnen einen Einblick in meine bisherigen Erfahrungen und Schwerpunkte geben.</p>
-        <!-- <p>Ich bin Justin Johann. Auf dieser Seite finden Sie meinen Lebenslauf sowie ein Projektportfolio.</p>
-        <p>Ich freue mich, Ihnen hier einen kleinen Einblick in meine bisherige Laufbahn zu geben.</p> -->
-
-    </div>
-
-    <div class="card">
-        <div class="btn-container">
-            <a class="btn" href="lebenslauf.html">Zum Lebenslauf</a>
-            <a class="btn" href="portfolio.html">Zum Projektportfolio</a>
+<body class="dark">
+    <nav class="nav-bar">
+        <span class="nav-name desktop-nav">Justin Johann</span>
+        <div class="nav-center desktop-nav">
+            <a href="#projects-section">Projekte</a>
+            <a href="#experience-section">Erfahrung</a>
+            <a href="#education-section">Ausbildung</a>
+            <a href="#contact">Kontakt</a>
         </div>
+
+        <button class="nav-toggle desktop-nav" onclick="toggleMode()" aria-label="Dark Mode umschalten">
+            <i data-lucide="sun" class="theme-icon"></i>
+        </button>
+
+        <button class="nav-toggle mobile-only" onclick="toggleMenu()" aria-label="Menü öffnen">
+            <i data-lucide="menu" class="theme-icon menu-icon"></i>
+            <i data-lucide="x" class="theme-icon close-icon" style="display:none;"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menü -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#projects-section" onclick="closeMenu()">Projekte</a>
+        <a href="#experience-section" onclick="closeMenu()">Erfahrung</a>
+        <a href="#education-section" onclick="closeMenu()">Ausbildung</a>
+        <a href="#contact" onclick="closeMenu()">Kontakt</a>
+        <button class="nav-toggle mobile-nav-toggle" onclick="toggleMode()" aria-label="Dark Mode umschalten">
+            <i data-lucide="sun" class="theme-icon"></i>
+        </button>
     </div>
 
-    <div class="card kontakt">
-        <h2>Kontakt</h2>
-        <p>
-            Justin Johann<br>
-            <a href="mailto:Justin.Johann24@gmail.com">Justin.Johann24@gmail.com</a><br>
-            <a href="https://www.linkedin.com/in/justin-johann-598b5924a/" target="_blank">LinkedIn</a>
-        </p>
+
+    <div class="container">
+
+        <header>
+            <h1>Justin Johann</h1>
+            <p>Prozesse verstehen. Lösungen bauen. Dinge besser machen.</p>
+            <div class="profilbild-wrapper">
+                <img src="img.jpg" alt="Profilbild Justin Johann" class="profilbild">
+            </div>
+        </header>
+
+        <div class="section">
+            <h2 class="section-title">Über mich</h2>
+            <div class="card">
+                <p class="entry-body">
+
+                    Ich studiere dual Wirtschaftsinformatik und habe in Projekten an der Hochschule wie auch im
+                    Unternehmen praktische Erfahrung in der Entwicklung digitaler Lösungen gesammelt. Besonders wichtig
+                    ist mir, dass Software nicht nur funktioniert, sondern Prozesse wirklich besser macht. Ich arbeite
+                    gerne analytisch, denke mich in Probleme rein und finde es spannend, wenn aus Ideen etwas entsteht,
+                    das im Alltag tatsächlich genutzt wird.
+                </p>
+            </div>
+        </div>
+
+        <div class="section" id="projects-section">
+            <h2 class="section-title clickable" onclick="toggleSection('projects-section')">Projekte</h2>
+            <div class="card">
+                <div class="entry-title">Betriebliches Vorschlagswesen</div>
+                <div class="entry-meta">07/2023 – 02/2024</div>
+                <div class="entry-tech">Power Apps</div>
+                <div class="entry-body">
+                    <ul>
+                        <li>Entwicklung einer Power Apps Applikation für das betriebliche Vorschlagswesen</li>
+                        <li>Ablösung einer veralteten Lösung zur Einreichung und Bewertung von Vorschlägen</li>
+                        <li>Mitarbeitende können Ideen einreichen und den Bearbeitungsstatus jederzeit einsehen</li>
+                        <li>Verantwortliche prüfen, bewerten und verwalten Vorschläge sowie Prämien direkt in der App
+                        </li>
+                        <li>Kontinuierliche Weiterentwicklung der Anwendung in enger Abstimmung mit Stakeholdern</li>
+                        <li><strong>Ergebnis:</strong> Erfolgreiche Umsetzung und produktive Implementierung der
+                            Anwendung</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="entry-title">Tool zur Kostenplanung</div>
+                <div class="entry-meta">01/2024 – 04/2024</div>
+                <div class="entry-tech">Power Apps, Power Automate</div>
+                <div class="entry-body">
+                    <ul>
+                        <li>Entwicklung einer modernen Anwendung für die Kostenplanung mit Power Apps und Power Automate
+                        </li>
+                        <li>Ablösung einer veralteten Lösung zur Erfassung und Auswertung Kostendaten</li>
+                        <li>Implementierung von Funktionen zur Nutzerverwaltung, Pflege von Kostenstellen sowie Eingabe
+                            und Analyse von Kostendaten</li>
+                        <li>Integration automatisierter Berichte und Visualisierungen relevanter Datenpunkte</li>
+                        <li>Wissenschaftliche Analyse der eingesetzten Technologien im Rahmen einer begleitenden
+                            Hausarbeit</li>
+                        <li><strong>Ergebnis:</strong> Fachlich abgeschlossen und dokumentiert in einer Hausarbeit mit
+                            der Note 1,7 bewertet</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="entry-title">Fitness-Web-App</div>
+                <div class="entry-meta">04/2024 – 06/2024</div>
+                <div class="entry-tech">Java, Vaadin, Spring Boot</div>
+                <div class="entry-body">
+                    <ul>
+                        <li>Entwicklung einer Fitness-Webanwendung im Rahmen des Moduls „Softwareprojekt“ (Teamgröße: 5)
+                            an der Hochschule Bielefeld</li>
+                        <li>Durchführung einer Planungsphase mit Diagrammen und Architekturplanung (Paketstruktur)</li>
+                        <li>Agile Umsetzung mit fortlaufender Versionspflege</li>
+                        <li>Eigene Schwerpunkte: Kalorienrechner, Benutzeranmeldung/-verwaltung, Gestaltung der
+                            Startseite</li>
+                        <li><strong>Ergebnis:</strong> Erfolgreich abgeschlossen mit der Note 1,3</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="entry-title">Automatisierung von Zertifikatserstellungen</div>
+                <div class="entry-meta">01/2025 – 04/2025</div>
+                <div class="entry-tech">UiPath</div>
+                <div class="entry-body">
+                    <ul>
+                        <li>Automatisierung der täglichen Erstellung von Kundenzertifikaten mit UiPath</li>
+                        <li>Entwicklung eines Bots zur vollautomatischen Durchführung im Hintergrund: Datenerfassung,
+                            Dokumentenerstellung und -ablage</li>
+                        <li>Deutliche Reduktion manueller Tätigkeiten und potenzieller Fehlerquellen im Prozess</li>
+                        <li>Umsetzung im Rahmen einer Praxisphase mit Fokus auf Prozessoptimierung durch RPA</li>
+                        <li>Wissenschaftliche Analyse der eingesetzten Technologien im Rahmen einer begleitenden
+                            Hausarbeit</li>
+                        <li><strong>Ergebnis:</strong> Produktiv eingeführt und erfolgreich im Unternehmen eingesetzt –
+                            Hausarbeit mit der Note 1,7 bewertet</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="experience-section">
+            <h2 class="section-title clickable" onclick="toggleSection('experience-section')">Berufserfahrung</h2>
+            <div class="card">
+                <div class="entry-title">Parker Hannifin GmbH & Co. KG</div>
+                <div class="entry-meta">Seit 08/2022</div>
+                <div class="entry-tech">Dualstudent Wirtschaftsinformatik</div>
+                <ul class="entry-body">
+                    <li>Analyse, Modellierung und Optimierung von Geschäftsprozessen</li>
+                    <li>Entwicklung automatisierter Workflows mit Power Automate und UiPath</li>
+                    <li>Erstellung von Low-Code-Apps mit Power Apps</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="entry-title">Anika-Schuhhandels GmbH & Co. KG</div>
+                <div class="entry-meta">11/2019 - 07/2022</div>
+                <div class="entry-tech">Minijob</div>
+                <ul class="entry-body">
+                    <li>Verkäufer</li>
+                    <li>Kundenberatung</li>
+                    <li>Präsentation der Artikel im Geschäft</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section" id="education-section">
+            <h2 class="section-title clickable" onclick="toggleSection('education-section')">Ausbildung</h2>
+            <div class="card">
+                <div class="entry-title">Hochschule Bielefeld</div>
+                <div class="entry-meta">Seit 08/2022</div>
+                <div class="entry-tech">Duales Studium der Wirtschaftsinformatik B.Sc.</div>
+                <ul class="entry-body">
+                    <li>Wahlpflichtfächer: Leadership, Corporate Entrepreneurship</li>
+                    <li>Softwareprojekt: Entwicklung einer Applikation in Java mit Vaadin und Spring Boot</li>
+                    <li>Voraussichtlicher Abschluss: Januar 2026</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="entry-title">Europaschule Bad Oeynhausen</div>
+                <div class="entry-meta">09/2013 - 06/2022</div>
+                <div class="entry-tech">Abitur</div>
+                <ul class="entry-body">
+                    <li>Abschlussnote: 2,0</li>
+                    <li>Leistungsfächer: Leichtathletik und Englisch</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Skills</h2>
+            <div class="card skill-list">
+                <div class="skill">Power Apps</div>
+                <div class="skill">Power Automate</div>
+                <div class="skill">UiPath</div>
+                <div class="skill">Java</div>
+                <div class="skill">Spring Boot</div>
+                <div class="skill">Vaadin</div>
+                <div class="skill">Power Fx</div>
+                <div class="skill">SQL</div>
+                <div class="skill">HTML</div>
+                <div class="skill">CSS</div>
+                <div class="skill">JavaScript</div>
+                <div class="skill">MySQL</div>
+                <div class="skill">PostgreSQL</div>
+            </div>
+        </div>
+
+        <div class="section" id="contact">
+            <h2 class="section-title">Kontakt</h2>
+            <div class="card contact-info">
+                <p><a href="mailto:Justin.Johann24@gmail.com">Justin.Johann24@gmail.com</a></p>
+                <p><a href="https://www.linkedin.com/in/justin-johann-598b5924a/" target="_blank">LinkedIn</a></p>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2025 Justin Johann · Design trifft Substanz
+        </footer>
     </div>
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
 </body>
 
 </html>
